@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Background Remover</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container py-5">
+        <header class="text-center mb-5">
+            <h1 class="display-4">Background Remover</h1>
+            <p class="lead">Upload an image and remove the background instantly</p>
+        </header>
+
+        <div class="upload-container">
+            <div id="upload-area" class="upload-area">
+                <div class="upload-placeholder" id="upload-placeholder">
+                    <i class="fas fa-cloud-upload-alt fa-3x mb-3"></i>
+                    <h3>Drag and drop your image here</h3>
+                    <p>or</p>
+                    <button id="browse-btn" class="btn btn-primary">
+                        <i class="fas fa-folder-open me-2"></i>Browse Files
+                    </button>
+                    <p class="supported-formats">Supported formats: PNG, JPG, JPEG, WEBP</p>
+                </div>
+                <img id="preview-image" class="preview-hidden" alt="Preview">
+            </div>
+
+            <div id="processing-container" class="processing-container d-none">
+                <div class="spinner-border text-primary mb-3" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+                <h3>Removing background...</h3>
+                <div class="progress mt-3">
+                    <div id="processing-progress-bar" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 75%"></div>
+                </div>
+            </div>
+
+            <div id="result-container" class="result-container d-none">
+                <img id="result-image" class="img-fluid" alt="Result">
+                <div class="mt-4">
+                    <a id="download-btn" class="btn btn-primary" download="removed-background.png">
+                        <i class="fas fa-download me-2"></i>Download
+                    </a>
+                    <button id="new-image-btn" class="btn btn-outline-secondary ms-3">
+                        <i class="fas fa-redo me-2"></i>New Image
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div id="error-alert" class="alert alert-danger mt-3 d-none" role="alert">
+            <i class="fas fa-exclamation-circle me-2"></i>
+            <span id="error-message"></span>
+        </div>
+
+        <div class="features-section">
+            <div class="row text-center">
+                <div class="col-md-4">
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <h3>Fast Processing</h3>
+                        <p>Quick background removal powered by advanced AI</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-image"></i>
+                        </div>
+                        <h3>High Quality</h3>
+                        <p>Maintain image quality with precise edge detection</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3>Secure</h3>
+                        <p>Your images are processed securely and not stored</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <footer class="mt-5 text-center">
+            <p>© 2023 Background Remover Tool. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <form id="upload-form" class="d-none">
+        <input type="file" id="file-input" name="image" accept=".jpg,.jpeg,.png,.webp">
+    </form>
+
+    <!-- Bootstrap 5 JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom JS -->
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
