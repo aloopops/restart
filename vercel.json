@@ -2,23 +2,18 @@
   "version": 2,
   "builds": [
     {
-      "src": "main.py",
-      "use": "@vercel/python"
+      "src": "app.py",
+      "use": "@vercel/python",
+      "config": { "runtime": "3.11" }
     }
   ],
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "/main.py"
+      "dest": "app.py"
     }
   ],
   "env": {
-    "PYTHONPATH": "."
-  },
-  "functions": {
-    "main.py": {
-      "memory": 1024,
-      "maxDuration": 60
-    }
+    "PYTHON_VERSION": "3.11"
   }
 }
